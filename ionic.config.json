@@ -1,5 +1,7 @@
 {
   "name": "bookshare",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

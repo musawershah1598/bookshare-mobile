@@ -1,0 +1,27 @@
+ion-content {
+  .back {
+    --ripple-color: transparent;
+    --padding-start: 0;
+  }
+  .form {
+    .errors {
+      color: red;
+    }
+    h1 {
+      font-size: 5vh;
+      font-weight: bolder;
+    }
+    ion-button {
+      margin-top: 5vh;
+      text-transform: capitalize;
+      --box-shadow: 0;
+    }
+    p {
+      a {
+        font-weight: bolder;
+        color: var(--ion-color-green);
+        text-decoration: none;
+      }
+    }
+  }
+}

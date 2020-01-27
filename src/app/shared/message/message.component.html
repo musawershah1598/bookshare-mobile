@@ -1,0 +1,8 @@
+<div *ngIf="msgService.messages.length > 0">
+  <div
+    class="alert alert-{{ item.type }}"
+    *ngFor="let item of msgService.messages"
+  >
+    {{ item.text }}
+  </div>
+</div>

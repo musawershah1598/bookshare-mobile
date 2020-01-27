@@ -1,0 +1,21 @@
+.alert {
+  padding: 10px;
+  margin: 10px;
+  background: var(--ion-color-secondary-shade);
+  border-radius: 5px;
+  color: white;
+}
+
+.alert-danger {
+  background: var(--ion-color-danger);
+}
+.alert-success {
+  background: var(--ion-color-success);
+}
+.alert-primary {
+  background: var(--ion-color-primary);
+}
+.alert-warning {
+  background: wheat;
+  color: black;
+}

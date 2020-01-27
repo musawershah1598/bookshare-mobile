@@ -1,14 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-slides
+    pager="{true}"
+    class="ion-padding"
+    #slides
+    (ionSlideDidChange)="doCheck()"
+  >
+    <ion-slide>
+      <div>
+        <h1>Discounted Secondhand Books</h1>
+        <p>Used and near new second hand books.</p>
+        <ion-img src="assets/images/slide_1.png"></ion-img>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <h1>20 Book Grocers Nationality.</h1>
+        <p>We have successfully opened 20 book stores across Australia.</p>
+        <ion-img src="assets/images/slide_2.png"></ion-img>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-button
+          class="ion-float-end"
+          slot="end"
+          *ngIf="doneBtn"
+          (click)="goToBasic()"
+          >Done</ion-button
+        >
+        <h1>Sell or Recycle Your Old Books With Us.</h1>
+        <p>
+          If you are looking to sell or recylce old books, the book grocer can
+          help.
+        </p>
+        <ion-img src="assets/images/slide_3.png"></ion-img>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

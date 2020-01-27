@@ -1,0 +1,17 @@
+<div
+  class="text-danger"
+  *ngIf="control && control.errors && (control.dirty || control.touched)"
+>
+  <div *ngIf="control.errors.required">
+    <small>This field is required</small>
+  </div>
+  <div *ngIf="control.errors.minlength">
+    <small>The field is too short</small>
+  </div>
+  <div *ngIf="control.errors.email">
+    <small>The email is invalid</small>
+  </div>
+  <div *ngIf="control.errors.isMatching">
+    <small>The password didn't match.</small>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+ion-content {
+  height: 100%;
+  --background: transparent;
+  background-image: url(../../../assets/images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  div {
+    text-align: center;
+    margin-top: 10vh;
+    h1 {
+      color: var(--ion-color-green);
+      font-size: 13vw;
+      font-weight: bolder;
+      margin-bottom: 0;
+    }
+    p {
+      color: var(--blueish);
+      margin-top: 0;
+    }
+    .buttons {
+      ion-button {
+        --border-radius: 30px;
+        --box-shadow: 0;
+        color: white;
+        text-transform: capitalize;
+        height: 7vh;
+        margin-bottom: 2vh;
+      }
+    }
+  }
+}

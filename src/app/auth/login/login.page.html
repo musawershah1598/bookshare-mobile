@@ -1,0 +1,47 @@
+<ion-content>
+  <ion-button fill="clear" size="large" (click)="goBack()" class="back">
+    <ion-icon
+      name="arrow-back"
+      mode="ios"
+      color="green"
+      size="large"
+    ></ion-icon>
+  </ion-button>
+
+  <div class="form ion-padding">
+    <h1>Login</h1>
+    <app-message></app-message>
+
+    <ul *ngIf="authService.errors" class="errors">
+      <li *ngFor="let item of authService.errors">
+        {{item}}
+      </li>
+    </ul>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+          <app-print-error [control]="form.controls.email"></app-print-error>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+          <app-print-error [control]="form.controls.password"></app-print-error>
+        </ion-item>
+        <ion-button
+          type="submit"
+          expand="block"
+          size="default"
+          color="green"
+          shape="round"
+          [disabled]="authService.loading || form.invalid"
+        >
+          <span>Login</span>
+          <ion-spinner *ngIf="authService.loading"></ion-spinner>
+        </ion-button>
+        <p>Don't have an account? <a routerLink="/register">Signup</a></p>
+      </ion-list>
+    </form>
+  </div>
+</ion-content>

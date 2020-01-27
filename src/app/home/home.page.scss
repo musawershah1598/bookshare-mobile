@@ -1,1 +1,32 @@
-
+ion-content {
+  ion-slides {
+    height: 100%;
+    --bullet-background-active: var(--ion-color-green);
+    --bullet-background: #5abd8c;
+    color: var(--ion-color-green);
+    div {
+      height: 100vh;
+      margin-top: 50vh;
+    }
+    h1 {
+      font-weight: bolder;
+    }
+    p {
+      margin-top: 0;
+      font-weight: lighter;
+      margin-bottom: 10%;
+    }
+    ion-img {
+      width: 60vw;
+      margin: 0 auto;
+    }
+    ion-button {
+      --box-shadow: 0;
+      --background: var(--ion-color-green);
+      --border-radius: 15px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
