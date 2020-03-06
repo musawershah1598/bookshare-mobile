@@ -7,6 +7,11 @@ ion-content {
     .errors {
       color: red;
     }
+    ion-item {
+      --background: rgba(239, 239, 239, 0.4);
+      margin-bottom: 2vh;
+      --border-radius: 30px;
+    }
     h1 {
       font-size: 5vh;
       font-weight: bolder;

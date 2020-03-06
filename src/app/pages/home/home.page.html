@@ -1,36 +1,62 @@
-<ion-header mode="ios">
+<ion-header mode="ios" *ngIf="current != 'about'" class="not-about-header">
   <ion-toolbar>
     <ion-title>{{current.toUpperCase()}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-header *ngIf="current == 'about'" class="about-header" mode="ios">
+  <div class="ion-padding">
+    <ion-button fill="clear" size="default" (click)="changeNavigation('home')">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Profile Details</ion-title>
+  </div>
+</ion-header>
 
-<ion-footer mode="ios">
+<ion-content>
+  <app-index *ngIf="current == 'home'"></app-index>
+  <app-search *ngIf="current=='search'"></app-search>
+  <app-bookmarks *ngIf="current=='bookmarks'"></app-bookmarks>
+  <app-about *ngIf="current=='about'"></app-about>
+</ion-content>
+
+<ion-footer mode="ios" *ngIf="current != 'about'">
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-tab-button (click)="changeNavigation('home')">
-          <ion-icon name="home" mode="ios"></ion-icon>
+        <ion-tab-button
+          (click)="changeNavigation('home')"
+          [class.selected]="current == 'home'"
+        >
+          <ion-icon name="home-outline"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-tab-button>
       </ion-col>
       <ion-col>
-        <ion-tab-button (click)="changeNavigation('search')">
-          <ion-icon name="search" mode="ios"></ion-icon>
+        <ion-tab-button
+          (click)="changeNavigation('search')"
+          [class.selected]="current == 'search'"
+        >
+          <ion-icon name="search-outline"></ion-icon>
           <ion-label>Search</ion-label>
         </ion-tab-button>
       </ion-col>
       <ion-col>
-        <ion-tab-button (click)="changeNavigation('bookmark')">
-          <ion-icon name="bookmarks" mode="ios"></ion-icon>
-          <ion-label>BookMarks</ion-label>
+        <ion-tab-button
+          (click)="changeNavigation('bookmarks')"
+          [class.selected]="current == 'bookmarks'"
+        >
+          <ion-icon name="bookmarks-outline"></ion-icon>
+          <ion-label>Bookmarks</ion-label>
         </ion-tab-button>
       </ion-col>
       <ion-col>
-        <ion-tab-button (click)="changeNavigation('about')">
-          <ion-icon name="information-circle-outline" mode="ios"></ion-icon>
-          <ion-label>About</ion-label>
+        <ion-tab-button
+          (click)="changeNavigation('about')"
+          [class.selected]="current == 'about'"
+        >
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
         </ion-tab-button>
       </ion-col>
     </ion-row>

@@ -1,0 +1,17 @@
+<div class="ion-padding">
+  <h1>Your Bookmarks</h1>
+  <ion-grid>
+    <ion-row *ngIf="booksData">
+      <ion-col size="6" *ngFor="let item of booksData">
+        <ion-card [ngStyle]="{ 'background-color': item.color }">
+          <ion-card-header>
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-img src="{{ item.image }}"></ion-img>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

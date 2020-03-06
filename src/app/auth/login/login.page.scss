@@ -4,6 +4,11 @@ ion-content {
     --padding-start: 0;
   }
   .form {
+    ion-item {
+      --background: rgba(239, 239, 239, 0.4);
+      margin-bottom: 1vh;
+      --border-radius: 30px;
+    }
     h1 {
       font-weight: bolder;
       font-size: 5vh;

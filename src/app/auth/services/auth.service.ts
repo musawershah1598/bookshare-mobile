@@ -18,11 +18,7 @@ export class AuthService {
     private msgService: MessageService,
     private router: Router
   ) {
-    this.storage.get("token").then(val => {
-      if (val) {
-        this.authenticationState.next(true);
-      }
-    });
+    this.checkLogin();
   }
 
   async register({ name, email, password, confirmPassword }) {
@@ -58,6 +54,7 @@ export class AuthService {
       );
       const res = JSON.parse(value.data);
       await this.storage.set("token", res.token);
+      await this.storage.set("user_id", res.user_id);
       this.authenticationState.next(true);
       this.loading = false;
       await this.msgService.add("Login Successfull", "success");
@@ -79,6 +76,24 @@ export class AuthService {
         this.msgService.add("Internal Server Error", "danger");
       }
       this.loading = false;
+    }
+  }
+
+  async logout() {
+    await this.storage.remove("token");
+    await this.storage.remove("user_id");
+    this.authenticationState.next(false);
+    this.router.navigateByUrl("/basic");
+  }
+
+  async checkLogin() {
+    const token = await this.storage.get("token");
+    if (token) {
+      this.authenticationState.next(true);
+      return true;
+    } else {
+      this.authenticationState.next(false);
+      return false;
     }
   }
 }

@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,700");
+ion-app {
+  ion-spinner {
+    margin: auto;
+  }
+}
 
 ion-content {
   background-color: #efefef !important;

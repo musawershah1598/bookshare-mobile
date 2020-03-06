@@ -1,0 +1,27 @@
+.not-about-header {
+  ion-toolbar {
+    --background: #08aeea;
+    --background: linear-gradient(to right, #08aeea 0%, #2af598 100%);
+    color: white;
+    --padding-top: 10vh;
+    ion-title {
+      font-weight: bolder;
+    }
+  }
+}
+.about-header {
+  ion-button {
+    border: 1px solid grey;
+    border-radius: 15px;
+    ion-icon {
+      color: black;
+    }
+  }
+}
+
+ion-footer {
+  .selected {
+    --color: var(--ion-color-green);
+    --ripple-color: transparent;
+  }
+}
