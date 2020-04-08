@@ -1,0 +1,41 @@
+<ion-toolbar class="ion-text-center">
+  <ion-title>Rate Book</ion-title>
+</ion-toolbar>
+<hr style="background-color: #eee;" />
+
+<ion-content>
+  <ul *ngIf="error.length > 0" class="error">
+    <li *ngFor="let i of error">{{ i }}</li>
+  </ul>
+  <app-message></app-message>
+  <div class="rating">
+    <ion-rating size="default" [(ngModel)]="rating"></ion-rating>
+  </div>
+  <div class="rating-content ion-margin">
+    <ion-textarea
+      rows="4"
+      placeholder="enter your review"
+      [(ngModel)]="content"
+    ></ion-textarea>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          expand="block"
+          class="cancel"
+          fill="clear"
+          (click)="cancel()"
+          >Cancel</ion-button
+        >
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" color="green" (click)="addReview()">
+          <span *ngIf="!reviewService.loading">Post</span>
+          <ion-spinner *ngIf="reviewService.loading"></ion-spinner>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

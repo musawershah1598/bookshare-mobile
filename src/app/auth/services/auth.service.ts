@@ -4,6 +4,8 @@ import { BehaviorSubject } from "rxjs";
 import { Storage } from "@ionic/storage";
 import { MessageService } from "src/app/shared/message.service";
 import { Router } from "@angular/router";
+import { environment } from "../../../environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
@@ -16,7 +18,8 @@ export class AuthService {
     private http: HTTP,
     private storage: Storage,
     private msgService: MessageService,
-    private router: Router
+    private router: Router,
+    private httpClient: HttpClient
   ) {
     this.checkLogin();
   }
@@ -75,6 +78,69 @@ export class AuthService {
       } else {
         this.msgService.add("Internal Server Error", "danger");
       }
+      this.loading = false;
+    }
+  }
+
+  async getUser() {
+    this.loading = true;
+    try {
+      const token = await this.storage.get("token");
+      const value = await this.http.get(
+        `${environment.api}/user`,
+        {},
+        { Authorization: "Bearer " + token }
+      );
+      const res = JSON.parse(value.data);
+      if (res) {
+        this.loading = false;
+        return res;
+      }
+      this.loading = false;
+    } catch (error) {
+      console.log(error);
+      this.msgService.add("Internal Server Error", "danger");
+      this.loading = false;
+    }
+  }
+
+  async updateUser(user) {
+    this.loading = true;
+    try {
+      const token = await this.storage.get("token");
+      const user_id = await this.storage.get("user_id");
+      user["user_id"] = user_id;
+      const value = await this.http.put(`${environment.api}/user`, user, {
+        Authorization: "Bearer " + token
+      });
+      this.loading = false;
+      return value;
+    } catch (error) {
+      this.msgService.add("Internal Server Error", "danger");
+      this.loading = false;
+      return error;
+    }
+  }
+
+  async uploadPicture(image) {
+    this.loading = true;
+    try {
+      const token = await this.storage.get("token");
+      const user_id = await this.storage.get("user_id");
+      const value = await this.http.post(
+        `${environment.api}/user/image/upload`,
+        {
+          user_id,
+          image
+        },
+        { Authorization: "Bearer " + token, "Content-Type": "application/json" }
+      );
+      const res = JSON.parse(value.data);
+      this.loading = false;
+      return true;
+    } catch (error) {
+      console.log(error);
+      this.msgService.add("Internal Server Error", "danger");
       this.loading = false;
     }
   }

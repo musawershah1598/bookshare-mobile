@@ -1,9 +1,21 @@
+ion-progress-bar {
+  --progress-background: var(--ion-color-green);
+  --background: white;
+}
 .header {
   margin-top: 5vh;
-  ion-img {
+  .thumbnail-image {
     margin: 0 auto;
     width: 30vw;
     height: 30vw;
+    --border-radius: 50%;
+    opacity: 0.3;
+  }
+  .upload-btn {
+    position: absolute;
+    top: 10vh;
+    left: 40vw;
+    color: black;
   }
   h4 {
     width: 100%;

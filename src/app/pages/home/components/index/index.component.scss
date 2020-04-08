@@ -7,9 +7,9 @@
     box-shadow: none;
     ion-thumbnail {
       width: 100%;
-      height: 15vh;
+      height: 20vh;
       ion-img {
-        object-fit: cover;
+        object-fit: contain;
       }
     }
     ion-card-header {
@@ -72,6 +72,7 @@
       ion-button {
         --border-radius: 15px;
         --box-shadow: none;
+        color: white;
       }
     }
   }

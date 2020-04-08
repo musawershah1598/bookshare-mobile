@@ -4,6 +4,52 @@
     <ion-input
       type="text"
       placeholder="Search Book, Author, or ISBN"
+      [(ngModel)]="term"
+      (ionChange)="search()"
     ></ion-input>
   </ion-item>
+
+  <h1 class="text-center" *ngIf="bookService.loading">
+    <app-loading></app-loading>
+  </h1>
+
+  <p *ngIf="notFound">{{ notFound }}</p>
+
+  <ion-list *ngIf="data.length > 0" lines="none">
+    <h2>Result</h2>
+    <ion-item *ngFor="let i of data" class="item">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="text-wrap">{{ i.title }}</ion-card-title>
+          <ion-icon
+            name="chevron-down-outline"
+            size="large"
+            class="show-button"
+            *ngIf="!i.show"
+            (click)="i.show = !i.show"
+          ></ion-icon>
+          <ion-icon
+            name="chevron-up-outline"
+            size="large"
+            class="show-button"
+            *ngIf="i.show"
+            (click)="i.show = !i.show"
+          ></ion-icon>
+          <ion-card-subtitle>By {{ i.author }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content *ngIf="i.show">
+          <ion-text>{{ i.description }}</ion-text>
+          <br />
+          <ion-button (click)="viewBook(i)" color="green" shape="round"
+            >View Details</ion-button
+          >
+        </ion-card-content>
+        <ion-card-content *ngIf="!i.show">
+          <ion-button (click)="viewBook(i)" color="green" shape="round"
+            >View Details</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </div>

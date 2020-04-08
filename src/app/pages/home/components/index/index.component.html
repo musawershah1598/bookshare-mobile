@@ -1,86 +1,33 @@
 <div class="ion-padding">
   <div class="top-picks">
-    <h1>Our Top Picks</h1>
-    <ion-slides [options]="topPickOpts">
-      <ion-slide>
-        <ion-card class="ion-text-center">
-          <ion-thumbnail>
-            <ion-img src="assets/images/books/fatherhood.jpg"></ion-img>
-          </ion-thumbnail>
-          <ion-card-header>
-            <ion-card-title>Fatherhood</ion-card-title>
-            <p>Markus Berkmann</p>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-thumbnail>
-            <ion-img src="assets/images/books/emilyzola.jpg"></ion-img>
-          </ion-thumbnail>
-          <ion-card-header>
-            <ion-card-title>
-              The Disappearance of Emilia Zola
-            </ion-card-title>
-            <p>Michael Rosen</p>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-thumbnail>
-            <ion-img src="assets/images/books/bestintime.jpg"></ion-img>
-          </ion-thumbnail>
-          <ion-card-header>
-            <ion-card-title>The Time Travellers</ion-card-title>
-            <p>Stride Lotte</p>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
+    <!-- <ion-progress-bar
+      *ngIf="bookService.loading"
+      type="indeterminate"
+      color="green"
+    ></ion-progress-bar> -->
+    <h1 class="text-center" *ngIf="bookService.loading">
+      <app-loading></app-loading>
+    </h1>
+    <div *ngIf="topPicks.length > 0">
+      <h1>Our Top Picks</h1>
+      <app-message></app-message>
+      <ion-slides [options]="topPickOpts">
+        <ion-slide *ngFor="let item of topPicks">
+          <ion-card class="ion-text-center">
+            <ion-thumbnail (click)="openImage(item.photo)">
+              <ion-img [src]="item.photo"></ion-img>
+            </ion-thumbnail>
+            <ion-card-header (click)="openBook(item)">
+              <ion-card-title>{{ item.title }}</ion-card-title>
+              <p>{{ item.author }}</p>
+            </ion-card-header>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
   </div>
 
-  <div class="best-seller">
-    <h1>Best Seller</h1>
-    <ion-slides [options]="bestSellerOpts">
-      <ion-slide>
-        <ion-card class="ion-text-center">
-          <ion-thumbnail>
-            <ion-img src="assets/images/books/fatherhood.jpg"></ion-img>
-          </ion-thumbnail>
-          <ion-card-header>
-            <ion-card-title>Fatherhood</ion-card-title>
-            <p>Markus Berkmann</p>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-thumbnail>
-            <ion-img src="assets/images/books/emilyzola.jpg"></ion-img>
-          </ion-thumbnail>
-          <ion-card-header>
-            <ion-card-title>
-              The Disappearance of Emilia Zola
-            </ion-card-title>
-            <p>Michael Rosen</p>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-thumbnail>
-            <ion-img src="assets/images/books/bestintime.jpg"></ion-img>
-          </ion-thumbnail>
-          <ion-card-header>
-            <ion-card-title>The Time Travellers</ion-card-title>
-            <p>Stride Lotte</p>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
-  </div>
-  <div class="newsletter">
+  <div class="newsletter" *ngIf="!bookService.loading">
     <h1>Monthly Newletter</h1>
     <ion-card>
       <ion-card-header>

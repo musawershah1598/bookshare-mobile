@@ -1,0 +1,36 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="add-review" *ngIf="!loading">
+  <ion-list *ngIf="reviews.length > 0" lines="none" class="review-list">
+    <div *ngFor="let item of reviews">
+      <ion-item class="ion-text-wrap">
+        <ion-avatar>
+          <ion-img
+            src="https://seertechservices.com/bookshare/public/profile_images/{{
+              item.user.avatar
+            }}"
+          ></ion-img>
+        </ion-avatar>
+        <ion-text class="review-content">
+          <h4>{{ item.user.name }}</h4>
+          <p>{{ formatTime(item.created_at) }}</p>
+          <ion-rating
+            [rate]="item.rating"
+            readonly="true"
+            size="small"
+          ></ion-rating>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>{{ item.content }}</ion-text>
+      </ion-item>
+      <hr style="width: 60%; background: #ccc;" />
+    </div>
+  </ion-list>
+  <p *ngIf="reviews.length <= 0">No Review found yet.</p>
+</div>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="green" (click)="addReview()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

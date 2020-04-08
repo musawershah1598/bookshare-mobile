@@ -28,6 +28,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import("./pages/home/home.module").then(m => m.HomePageModule)
+  },
+  {
+    path: "book",
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./pages/book/book.module").then(m => m.BookPageModule)
   }
 ];
 

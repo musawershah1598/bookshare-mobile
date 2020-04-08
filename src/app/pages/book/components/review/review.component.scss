@@ -1,0 +1,24 @@
+.review-list {
+  .review-content {
+    h4 {
+      margin-bottom: 0;
+      margin-left: 7vw;
+    }
+    p {
+      margin: 0;
+      margin-left: 7vw;
+      color: #ccc;
+      font-size: 15px;
+    }
+    ion-rating {
+      margin-left: 7vw;
+      --star-color-filled: var(--ion-color-green);
+    }
+  }
+}
+
+ion-fab {
+  ion-fab-button {
+    --box-shadow: none;
+  }
+}

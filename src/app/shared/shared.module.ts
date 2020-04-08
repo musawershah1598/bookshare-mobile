@@ -2,10 +2,11 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { PrintErrorComponent } from "./print-error/print-error.component";
 import { MessageComponent } from "./message/message.component";
+import { LoadingComponent } from "./loading/loading.component";
 
 @NgModule({
-  declarations: [PrintErrorComponent, MessageComponent],
+  declarations: [PrintErrorComponent, MessageComponent, LoadingComponent],
   imports: [CommonModule],
-  exports: [PrintErrorComponent, MessageComponent]
+  exports: [PrintErrorComponent, MessageComponent, LoadingComponent]
 })
 export class SharedModule {}

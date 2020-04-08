@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 
 import { IonicStorageModule } from "@ionic/storage";
 import { HTTP } from "@ionic-native/http/ngx";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { HTTP } from "@ionic-native/http/ngx";
     IonicStorageModule.forRoot({
       name: "_bookShareDb"
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

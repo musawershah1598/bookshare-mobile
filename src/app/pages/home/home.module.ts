@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { IonicModule } from "@ionic/angular";
 
@@ -12,9 +12,17 @@ import { SearchComponent } from "./components/search/search.component";
 import { BookmarksComponent } from "./components/bookmarks/bookmarks.component";
 import { AboutComponent } from "./components/about/about.component";
 import { ProfileUpdateComponent } from "./modals/profile-update/profile-update.component";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    SharedModule,
+    HomePageRoutingModule
+  ],
   declarations: [
     HomePage,
     IndexComponent,

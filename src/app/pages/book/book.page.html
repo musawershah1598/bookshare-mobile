@@ -1,0 +1,35 @@
+<ion-content fullscreen>
+  <div class="header">
+    <h1>{{book.title}}</h1>
+    <!-- <ion-fab horizontal="end" slot="fixed">
+      <ion-fab-button color="danger" size="large">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list>
+        <ion-fab-button class="custom-fab" (click)="downloadBook()">
+          <ion-icon name="download-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="viewBook()" class="custom-fab">
+          <ion-icon name="eye-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab> -->
+  </div>
+
+  <ion-segment value="{{current}}" (ionChange)="changeSegment($event)">
+    <ion-segment-button value="details">Details</ion-segment-button>
+    <ion-segment-button value="description">Description</ion-segment-button>
+    <ion-segment-button value="reviews">Reviews</ion-segment-button>
+  </ion-segment>
+
+  <div class="content ion-padding" *ngIf="current == 'details'">
+    <app-details [book]="book"></app-details>
+  </div>
+  <div class="content ion-padding" *ngIf="current == 'description'">
+    <p class="text-muted">{{book.description}}</p>
+  </div>
+
+  <div class="content ion-padding review" *ngIf="current == 'reviews'">
+    <app-review [id]="book.id"></app-review>
+  </div>
+</ion-content>

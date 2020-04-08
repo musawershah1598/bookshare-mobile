@@ -1,56 +1,85 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-title>Change Details</ion-title>
-    <ion-button fill="clear" slot="end" (click)="close()">
-      <ion-icon name="close-outline" color="light"></ion-icon>
+    <ion-button fill="clear" size="default" (click)="close()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>
+    <ion-title>Change Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-item class="ion-text-wrap" lines="none">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-input type="text" placeholder="enter your name"></ion-input>
-    </ion-item>
-    <ion-item class="ion-text-wrap" lines="none">
-      <ion-icon name="mail-outline"></ion-icon>
-      <ion-input type="email" placeholder="enter your email"></ion-input>
-    </ion-item>
-    <ion-item class="ion-text-wrap" lines="none">
-      <ion-icon name="call-outline"></ion-icon>
-      <ion-input type="tel" placeholder="enter your phone number"></ion-input>
-    </ion-item>
-    <ion-item class="no-style" lines="none">
-      <ion-label>Gender</ion-label>
-    </ion-item>
-    <ion-radio-group value="{{ gender }}">
-      <ion-item lines="none" [ngClass]="{ active: gender == 'male' }">
-        <ion-label>Male</ion-label>
-        <ion-radio
-          value="male"
-          mode="ios"
-          (click)="changeRadio('male')"
-        ></ion-radio>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <ul *ngIf="errors" style="color: red;list-style: none;">
+      <li *ngFor="let item of errors">{{ item }}</li>
+    </ul>
+    <app-message></app-message>
+    <ion-list>
+      <ion-item class="ion-text-wrap" lines="none">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-input
+          type="text"
+          placeholder="enter your name"
+          formControlName="name"
+        ></ion-input>
+        <app-print-error [control]="form.controls.name"></app-print-error>
       </ion-item>
-      <ion-item lines="none" [ngClass]="{ active: gender == 'female' }">
-        <ion-label>Female</ion-label>
-        <ion-radio
-          value="female"
-          mode="ios"
-          (click)="changeRadio('female')"
-        ></ion-radio>
+      <ion-item class="ion-text-wrap" lines="none">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-input
+          type="email"
+          placeholder="enter your email"
+          formControlName="email"
+        ></ion-input>
+        <app-print-error [control]="form.controls.email"></app-print-error>
       </ion-item>
-      <ion-item lines="none" [ngClass]="{ active: gender == 'other' }">
-        <ion-label>Others</ion-label>
-        <ion-radio
-          value="others"
-          mode="ios"
-          (click)="changeRadio('others')"
-        ></ion-radio>
+      <ion-item class="ion-text-wrap" lines="none">
+        <ion-icon name="call-outline"></ion-icon>
+        <ion-input
+          type="tel"
+          placeholder="enter your phone number"
+          formControlName="phone"
+        ></ion-input>
+        <app-print-error [control]="form.controls.phone"></app-print-error>
       </ion-item>
-    </ion-radio-group>
-  </ion-list>
+      <ion-item class="no-style" lines="none">
+        <ion-label>Gender</ion-label>
+      </ion-item>
+      <ion-radio-group formControlName="gender">
+        <ion-item lines="none" [ngClass]="{ active: gender == 'male' }">
+          <ion-label>Male</ion-label>
+          <ion-radio
+            value="male"
+            mode="ios"
+            (click)="changeRadio('male')"
+          ></ion-radio>
+        </ion-item>
+        <ion-item lines="none" [ngClass]="{ active: gender == 'female' }">
+          <ion-label>Female</ion-label>
+          <ion-radio
+            value="female"
+            mode="ios"
+            (click)="changeRadio('female')"
+          ></ion-radio>
+        </ion-item>
+        <ion-item lines="none" [ngClass]="{ active: gender == 'other' }">
+          <ion-label>Others</ion-label>
+          <ion-radio
+            value="others"
+            mode="ios"
+            (click)="changeRadio('others')"
+          ></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
 
-  <ion-button expand="block" size="large">Update</ion-button>
+    <ion-button
+      expand="block"
+      size="large"
+      type="submit"
+      [disabled]="form.invalid || authService.loading"
+    >
+      <span>Update</span>
+      <ion-spinner *ngIf="authService.loading"></ion-spinner>
+    </ion-button>
+  </form>
 </ion-content>

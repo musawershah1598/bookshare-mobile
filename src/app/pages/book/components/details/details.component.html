@@ -1,0 +1,32 @@
+<p>
+  Author &nbsp;&nbsp;
+  <span class="text-muted">{{ book.author }}</span>
+</p>
+<br />
+<p>
+  Pages &nbsp;&nbsp; <span class="text-muted">{{ book.pages }}</span>
+</p>
+<p>
+  Views &nbsp;&nbsp; <span class="text-muted">{{ book.views }}</span>
+</p>
+<p>
+  Downloads &nbsp;&nbsp; <span class="text-muted">{{ book.downloads }}</span>
+</p>
+<br />
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="green">
+    <ion-icon name="chevron-up-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button (click)="viewBook()">
+      <ion-icon name="eye-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="downloadBook()">
+      <ion-icon name="download-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button>
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>

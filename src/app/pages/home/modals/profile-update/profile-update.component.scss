@@ -3,6 +3,12 @@ ion-header {
     --background: #08aeea;
     --background: linear-gradient(to right, #08aeea 0%, #2af598 100%);
     color: white;
+    ion-button {
+      --padding-start: 0;
+      ion-icon {
+        color: white;
+      }
+    }
   }
 }
 

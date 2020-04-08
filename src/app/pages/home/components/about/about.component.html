@@ -1,23 +1,48 @@
 <div class="ion-padding">
-  <div class="header">
-    <ion-img src="assets/images/avatar.png"></ion-img>
+  <!-- <ion-progress-bar
+    *ngIf="authService.loading"
+    type="indeterminate"
+  ></ion-progress-bar> -->
+  <app-loading *ngIf="authService.loading"></app-loading>
+  <div class="header" *ngIf="user">
+    <app-message></app-message>
+    <div>
+      <ion-thumbnail class="thumbnail-image">
+        <ion-img
+          src="https://seertechservices.com/bookshare/public/profile_images/{{
+            user.avatar
+          }}"
+          *ngIf="user.avatar"
+        ></ion-img>
+        <ion-img src="assets/images/avatar.png" *ngIf="!user.avatar"></ion-img>
+      </ion-thumbnail>
+      <ion-button
+        fill="clear"
+        size="large"
+        class="upload-btn"
+        (click)="showCameraOption()"
+      >
+        <ion-icon name="camera-outline" *ngIf="!authService.loading"></ion-icon>
+        <ion-spinner name="dots" *ngIf="authService.loading"></ion-spinner>
+      </ion-button>
+    </div>
     <h4><span>Profile</span></h4>
   </div>
 </div>
 
-<div class="body">
+<div class="body" *ngIf="user">
   <ion-list>
     <ion-item lines="none">
       <ion-icon name="person-outline" color="white"></ion-icon>
-      <ion-label>Musawer Shah</ion-label>
+      <ion-label>{{ user.name }}</ion-label>
     </ion-item>
     <ion-item lines="none">
       <ion-icon name="mail-outline" color="white"></ion-icon>
-      <ion-label class="ion-text-wrap">musawershah1598@gmail.com</ion-label>
+      <ion-label class="ion-text-wrap">{{ user.email }}</ion-label>
     </ion-item>
-    <ion-item lines="none">
+    <ion-item lines="none" *ngIf="user.phone">
       <ion-icon name="call-outline" color="white"></ion-icon>
-      <ion-label>+92-335 0957656</ion-label>
+      <ion-label>{{ user.phone }}</ion-label>
     </ion-item>
     <ion-button
       color="light"

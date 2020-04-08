@@ -1,0 +1,31 @@
+ion-toolbar {
+  color: var(--ion-color-green);
+  font-weight: bolder;
+}
+
+ion-content {
+  .error {
+    color: red;
+    list-style: none;
+  }
+  .rating {
+    text-align: center;
+    ion-rating {
+      --star-color-filled: var(--ion-color-green);
+    }
+  }
+  .rating-content {
+    border: 1px solid #eee;
+    border-radius: 15px;
+  }
+
+  ion-button {
+    --box-shadow: none;
+    --border-radius: 15px;
+  }
+
+  .cancel {
+    border: 1px solid var(--ion-color-green);
+    border-radius: 15px;
+  }
+}

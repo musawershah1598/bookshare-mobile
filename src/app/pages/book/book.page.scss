@@ -1,0 +1,41 @@
+ion-content {
+  .header {
+    background: #08aeea;
+    background: linear-gradient(to right, #08aeea 0%, #2af598 100%);
+    color: white;
+    height: 35%;
+    h1 {
+      margin: 0;
+      position: absolute;
+      font-size: 32px;
+      top: 20%;
+      left: 5%;
+    }
+    ion-fab {
+      margin-top: 60%;
+      margin-right: 4%;
+      ion-fab-button {
+        --box-shadow: none;
+      }
+    }
+    .custom-fab {
+      height: 60px;
+      width: 60px;
+    }
+  }
+  .content {
+    .text-muted {
+      color: #ccc;
+    }
+    p {
+      margin: 0;
+    }
+    .description {
+      text-indent: 10%;
+      text-align: justify;
+    }
+    ion-button {
+      --box-shadow: none;
+    }
+  }
+}
