@@ -1,3 +1,5 @@
+<app-message></app-message>
+
 <p>
   Author &nbsp;&nbsp;
   <span class="text-muted">{{ book.author }}</span>
@@ -25,8 +27,11 @@
     <ion-fab-button (click)="downloadBook()">
       <ion-icon name="download-outline"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button>
+    <ion-fab-button (click)="addToFavorite()" *ngIf="!isBookmarked">
       <ion-icon name="heart-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="removeBookmark()" *ngIf="isBookmarked">
+      <ion-icon name="heart" color="danger"></ion-icon>
     </ion-fab-button>
   </ion-fab-list>
 </ion-fab>

@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-search",
   templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.scss"]
+  styleUrls: ["./search.component.scss"],
 })
 export class SearchComponent implements OnInit {
   term: string = "";
@@ -18,15 +18,20 @@ export class SearchComponent implements OnInit {
   async search() {
     this.data = [];
     this.notFound = null;
-    const data = await this.bookService.search(this.term);
-    if (data == false) {
-      this.data = [];
-      this.notFound = "A book with the given title or author not found.";
+    if (this.term != "") {
+      const data = await this.bookService.search(this.term);
+      if (data == false) {
+        this.data = [];
+        this.notFound = "A book with the given title or author not found.";
+      } else {
+        this.data = data;
+        this.data.forEach((item) => {
+          item["show"] = false;
+        });
+      }
     } else {
-      this.data = data;
-      this.data.forEach(item => {
-        item["show"] = false;
-      });
+      this.data = [];
+      this.notFound = null;
     }
   }
 

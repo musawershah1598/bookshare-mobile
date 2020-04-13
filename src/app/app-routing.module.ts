@@ -6,41 +6,44 @@ const routes: Routes = [
   // { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "home",
-    loadChildren: () => import("./home/home.module").then(m => m.HomePageModule)
+    loadChildren: () =>
+      import("./home/home.module").then((m) => m.HomePageModule),
   },
   {
     path: "login",
     loadChildren: () =>
-      import("./auth/login/login.module").then(m => m.LoginPageModule)
+      import("./auth/login/login.module").then((m) => m.LoginPageModule),
   },
   {
     path: "register",
     loadChildren: () =>
-      import("./auth/register/register.module").then(m => m.RegisterPageModule)
+      import("./auth/register/register.module").then(
+        (m) => m.RegisterPageModule
+      ),
   },
   {
     path: "basic",
     loadChildren: () =>
-      import("./auth/basic/basic.module").then(m => m.BasicPageModule)
+      import("./auth/basic/basic.module").then((m) => m.BasicPageModule),
   },
   {
     path: "pages/home",
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import("./pages/home/home.module").then(m => m.HomePageModule)
+      import("./pages/home/home.module").then((m) => m.HomePageModule),
   },
   {
     path: "book",
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import("./pages/book/book.module").then(m => m.BookPageModule)
-  }
+      import("./pages/book/book.module").then((m) => m.BookPageModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

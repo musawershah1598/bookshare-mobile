@@ -1,20 +1,9 @@
-div:first-of-type {
-  ion-row {
-    ion-card {
-      box-shadow: none;
-      height: 30vh;
-      border-radius: 15px;
-      ion-card-title {
-        font-size: 12px;
-        text-align: center;
-        color: white;
-      }
-      ion-card-content {
-        height: 20vh;
-        ion-img {
-          height: 18vh;
-        }
-      }
+ion-item {
+  ion-thumbnail {
+    width: 30vw;
+    height: 20vh;
+    ion-img {
+      object-fit: contain;
     }
   }
 }

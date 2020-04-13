@@ -43,6 +43,15 @@
       </ion-col>
       <ion-col>
         <ion-tab-button
+          [class.selected]="current == 'category'"
+          (click)="changeNavigation('category')"
+        >
+          <ion-icon name="copy-outline"></ion-icon>
+          <ion-label>Categories</ion-label>
+        </ion-tab-button>
+      </ion-col>
+      <ion-col>
+        <ion-tab-button
           (click)="changeNavigation('bookmarks')"
           [class.selected]="current == 'bookmarks'"
         >

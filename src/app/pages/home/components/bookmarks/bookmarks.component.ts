@@ -1,28 +1,47 @@
 import { Component, OnInit } from "@angular/core";
 
-import { data } from "./data.js";
+import { BookmarkService } from "../../services/bookmark.service.js";
+import { PhotoViewer } from "@ionic-native/photo-viewer/ngx";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-bookmarks",
   templateUrl: "./bookmarks.component.html",
-  styleUrls: ["./bookmarks.component.scss"]
+  styleUrls: ["./bookmarks.component.scss"],
+  providers: [PhotoViewer],
 })
 export class BookmarksComponent implements OnInit {
-  booksData: Array<any>;
-  colors = ["#2ecc71", "#8e44ad", "#34495e", "#f1c40f", "#3498db"];
-  constructor() {}
+  loading: boolean = false;
+  data: Array<any> = [];
+
+  constructor(
+    private bookmarkService: BookmarkService,
+    private photoViewer: PhotoViewer,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.booksData = data;
-    let index = 0;
-    this.booksData = this.booksData.map(item => {
-      if (index >= this.colors.length) {
-        index = 0;
+    this.loading = true;
+    this.bookmarkService.getbookmarks().then((val) => {
+      if (val) {
+        this.data = val;
+        this.data.forEach((item) => {
+          item["photo"] =
+            "https://seertechservices.com/bookshare/public/storage/book_images/" +
+            item.genre.name +
+            "/" +
+            item.book.photo;
+        });
       }
-      item["color"] = this.colors[index];
-      index++;
-      return item;
+      this.loading = false;
     });
-    console.log(this.booksData);
+  }
+
+  openImage(photo) {
+    this.photoViewer.show(photo, "Photo");
+  }
+
+  openBook(book) {
+    this.router.navigate(["/book", { book: JSON.stringify(book) }]);
   }
 }

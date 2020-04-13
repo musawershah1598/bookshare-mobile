@@ -5,7 +5,7 @@
       type="text"
       placeholder="Search Book, Author, or ISBN"
       [(ngModel)]="term"
-      (ionChange)="search()"
+      (keyup.enter)="search()"
     ></ion-input>
   </ion-item>
 
@@ -13,7 +13,7 @@
     <app-loading></app-loading>
   </h1>
 
-  <p *ngIf="notFound">{{ notFound }}</p>
+  <app-not-found *ngIf="notFound" message="No book found"></app-not-found>
 
   <ion-list *ngIf="data.length > 0" lines="none">
     <h2>Result</h2>
